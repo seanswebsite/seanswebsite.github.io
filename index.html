@@ -1,0 +1,65 @@
+<!DOCTYPE html-sean>
+<!-- spagett -->
+
+<html-sean>
+<heaad>
+<script>
+
+const e = (o) => {
+	if (Array.isArray(o)) {
+		console.log("rendering o 1", o);
+		return o.map(e).join('');
+	}
+
+	if (typeof o === "string") {
+		console.log("rendering o 2", o);
+		return o;
+	}
+
+	if (!o) {
+		console.log("rendering o 3", o);
+		return '';
+	}
+
+	if (!o.contents) {
+		console.log("rendering o 4", o);
+		return `<${o.tag} style="${o.style || ''}"/>`
+	}
+
+	console.log("rendering o 5", o);
+	return `<${o.tag} style="${o.style || ''}">${e(o.contents)}</${o.tag}>`
+}
+
+const t = (tag, style, contents) => ({ tag, style, contents });
+
+const body = [
+	t('body', null, [
+		t('ul', "position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; color: #fff; margin: 0px; padding-top: 20px;", [
+			t('li', null, 'Sean-o'),
+			t('li', null, 'Call me trimtab'),
+			t('li', null, 'spagett and some of my other favorite memes'),
+			t('li', null, 'see my sound cloud *link to picture of cloud with sounds vector overlayed onto it*'),
+			t('li', null, 'open source your courses'),
+			t('li', null, 'do you speak portuguese?'),
+			t('li', null, 'do you speak math?'),
+			t('li', null, 'currently reading awakened ape'),
+			t('li', null, "privacy policy: I don't want your information. Don't give it to me."),
+			t('li', null, "How to vim by sean ft my vimrc"),
+			t('li', null, "Workout schedules by me, Rosan, and Lucas"),
+			t('li', null, "I still need to watch Star Wars don't let me get away without it."),
+			t('li', null, "Are you interested in dating me? Join the playbook group!"),
+			t('li', null, "Favorite sites: Eddie Kohler"),
+			t('li', null, "Least favorite sites: Facebook"),
+			// t('li', null, "Read more about my airplane tai chi techniques here"), // saving this one for luke
+			t('li', null, "Least favorite sites: Facebook"),
+		]),
+	]),
+];
+
+document.querySelector('body').outerHTML = e(body);
+</script>
+</heaad>
+<body>
+	<table> <!-- this immediately gets pooped on --> </table>
+</body>
+</html>
